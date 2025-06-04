@@ -414,10 +414,8 @@
             </field>
         </record>
 
-
-        <!-- Remove any domain on account_id so all accounts except 'view' type are selectable -->
-        <record id="view_account_move_line_form_inherit_all_accounts" model="ir.ui.view">
-            <field name="name">Journal Items (form) - All Accounts</field>
+        <record id="view_account_move_line_form_inherit_show_all_accounts" model="ir.ui.view">
+            <field name="name">Journal Items (form, show all accounts)</field>
             <field name="model">account.move.line</field>
             <field name="inherit_id" ref="account.view_move_line_form"/>
             <field name="arch" type="xml">
