@@ -478,8 +478,6 @@
             <field name="state">code</field>
             <field name="code">model.search([('user_type_id.type', '=', 'liquidity')]).write({'reconcile': True})</field>
             <field name="active">False</field>
-            <field name="numbercall">1</field>
-            <field name="doall">False</field>
         </record>
     </data>
 </odoo>
