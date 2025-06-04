@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Modify Expense Sheet form view -->
+        <record id="view_hr_expense_sheet_form_md_approval" model="ir.ui.view">
+            <field name="name">hr.expense.sheet.form.md.approval</field>
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_sheet_move_post']" position="attributes">
+                    <attribute name="invisible">state != 'md_approval'</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_approve_expense_sheets']" position="after">
+                    <button name="action_md_approval" string="Submit for MD Approval" 
+                            type="object" class="btn-primary" 
+                            invisible="state != 'approve'"/>
+                </xpath>
+                <xpath expr="//button[@name='action_sheet_move_post']" position="replace">
+                    <button name="action_md_approve" string="Approve &amp; Post Journal Entries" 
+                            type="object" class="btn-primary" 
+                            invisible="state != 'md_approval'"/>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="statusbar_visible">draft,submit,approve,md_approval,post,done</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

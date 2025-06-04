@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="nile_view_account_payment_form_inherit" model="ir.ui.view">
+        <field name="name">nile.scan.account.payment.view.form.inherit</field>
+        <field name="model">account.payment</field>
+        <field name="priority">10000</field>
+        <field name="inherit_id" ref="account.view_account_payment_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_bank_id']" position="after">
+                <field name="discount_amount" string="Discount Amount"/>
+                <field name="stamp_amount" string="Stamp Duty"/>
+                <field name="admin_fees" string="Admin Fees"/>
+                <field name="withholding_in_amount" string="WHT (Incoming)"/>
+                <field name="withholding_out_amount" string="WHT (Outgoing)"/>
+                <field name="withholding_out_amount_3" string="WHT (Outgoing 3%)"/>
+                <field name="advertising_amount" string="Advertising Fees"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add button to payment form -->
+    <record id="view_account_payment_form_inherit" model="ir.ui.view">
+        <field name="name">account.payment.form.inherit</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(action_payment_accounts_wizard)d" string="Configure Accounts" type="action" class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add menu item under Configuration -->
+    <menuitem id="menu_payment_accounts_config" 
+              name="Payment Accounts"
+              parent="account.menu_finance_configuration"
+              action="action_payment_accounts_wizard"
+              sequence="50"/>
+
+</odoo>
