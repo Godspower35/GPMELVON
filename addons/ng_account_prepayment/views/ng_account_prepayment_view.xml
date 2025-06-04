@@ -414,6 +414,20 @@
             </field>
         </record>
 
+
+        <!-- Ensure only 'Bank and Cash' accounts are shown in the account field during reconciliation -->
+        <record id="view_account_move_line_form_inherit_liquidity_accounts" model="ir.ui.view">
+            <field name="name">Journal Items (form) - Only Bank and Cash Accounts</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_form"/>
+            <field name="arch" type="xml">
+                <field name="account_id" position="attributes">
+                    <attribute name="domain">[("user_type_id.type", "=", "liquidity")]</attribute>
+                </field>
+            </field>
+        </record>
+
+
         <!-- Main Prepayments menu under Accounting -->
         <menuitem id="menu_finance_prepayments" name="Prepayments" parent="account.menu_finance_entries"/>
 
@@ -458,18 +472,5 @@
 
         <!-- Prepayment Categories menu under Configuration -->
         <menuitem parent="menu_finance_config_prepayments" id="menu_action_account_prepayment_category_config" name="Prepayment Categories" action="action_account_prepayment_category"/>
-
-        <!-- Ensure 'Allow Reconciliation' is visible on account form -->
-        <record id="view_account_form_inherit_show_reconcile" model="ir.ui.view">
-            <field name="name">account.account.form.inherit.show.reconcile</field>
-            <field name="model">account.account</field>
-            <field name="inherit_id" ref="account.view_account_form"/>
-            <field name="arch" type="xml">
-                <field name="reconcile" position="attributes">
-                    <attribute name="invisible">0</attribute>
-                    <attribute name="readonly">0</attribute>
-                </field>
-            </field>
-        </record>
     </data>
 </odoo>
