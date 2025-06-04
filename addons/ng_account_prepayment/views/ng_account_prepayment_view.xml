@@ -471,18 +471,15 @@
         <!-- Prepayment Categories menu under Configuration -->
         <menuitem parent="menu_finance_config_prepayments" id="menu_action_account_prepayment_category_config" name="Prepayment Categories" action="action_account_prepayment_category"/>
 
-        <!-- Make all Bank and Cash accounts reconcilable on module update (fixed domain) -->
+        <!-- Make all Bank and Cash accounts reconcilable on module update (env.ref fix) -->
         <record id="ir_cron_make_bank_cash_accounts_reconcilable" model="ir.cron">
             <field name="name">Make Bank and Cash Accounts Reconcilable</field>
             <field name="model_id" ref="account.model_account_account"/>
             <field name="state">code</field>
             <field name="code">
-                model.search([
-                    ('user_type_id', 'in', [
-                        ref('account.data_account_type_bank'),
-                        ref('account.data_account_type_cash')
-                    ])
-                ]).write({'reconcile': True})
+                bank_type_id = env.ref('account.data_account_type_bank').id
+                cash_type_id = env.ref('account.data_account_type_cash').id
+                model.search([('user_type_id', 'in', [bank_type_id, cash_type_id])]).write({'reconcile': True})
             </field>
             <field name="active">False</field>
         </record>
