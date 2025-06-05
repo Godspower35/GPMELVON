@@ -414,18 +414,6 @@
             </field>
         </record>
 
-        <record id="view_account_move_line_form_inherit_show_all_accounts" model="ir.ui.view">
-            <field name="name">Journal Items (form, show all accounts)</field>
-            <field name="model">account.move.line</field>
-            <field name="inherit_id" ref="account.view_move_line_form"/>
-            <field name="arch" type="xml">
-                <field name="account_id" position="attributes">
-                    <attribute name="domain">[]</attribute>
-                </field>
-            </field>
-        </record>
-
-
         <!-- Main Prepayments menu under Accounting -->
         <menuitem id="menu_finance_prepayments" name="Prepayments" parent="account.menu_finance_entries"/>
 
@@ -471,17 +459,20 @@
         <!-- Prepayment Categories menu under Configuration -->
         <menuitem parent="menu_finance_config_prepayments" id="menu_action_account_prepayment_category_config" name="Prepayment Categories" action="action_account_prepayment_category"/>
 
-        <!-- Make all Bank and Cash accounts reconcilable on module update (no indentation in code block) -->
+        <!-- Scheduled Action: Make all Bank and Cash accounts reconcilable (robust, no external IDs) -->
         <record id="ir_cron_make_bank_cash_accounts_reconcilable" model="ir.cron">
             <field name="name">Make Bank and Cash Accounts Reconcilable</field>
             <field name="model_id" ref="account.model_account_account"/>
             <field name="state">code</field>
             <field name="code">
-bank_type_id = env.ref('account.data_account_type_bank').id
-cash_type_id = env.ref('account.data_account_type_cash').id
-model.search([('user_type_id', 'in', [bank_type_id, cash_type_id])]).write({'reconcile': True})
+                bank_types = model.env['account.account.type'].search([('type', 'in', ['bank', 'cash'])])
+                model.search([('user_type_id', 'in', bank_types.ids)]).write({'reconcile': True})
             </field>
-            <field name="active">False</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="True"/>
         </record>
     </data>
 </odoo>
