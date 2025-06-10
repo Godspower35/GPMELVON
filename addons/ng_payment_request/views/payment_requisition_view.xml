@@ -59,7 +59,7 @@
                             </page>
                             <page string="Accounting" groups="account.group_account_invoice">
                                 <group>
-                                    <field name="journal_id" readonly="state not in ('done')" required="state in ('done')"/>
+                                    <field name="journal_id" readonly="state not in ('done')"/>
                                     <field name="move_id" readonly="True" groups="account.group_account_invoice"/>
                                 </group>
                             </page>

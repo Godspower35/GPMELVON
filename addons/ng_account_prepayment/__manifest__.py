@@ -40,6 +40,7 @@
         'views/ng_account_prepayment_view.xml',
         'views/prepayment_writeoff_view.xml',
         'views/ng_account_prepayment_invoice_view.xml',
+         'views/bank_rec_widget_account_override.xml',  # <-- Added override for bank rec widget
     ],
     'images': ['static/description/icon.png'],
     'icon': '/ng_account_prepayment/static/description/icon.png',
