@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-ng_payment_request.access_payment_requisition_line,access_payment_requisition_line,ng_payment_request.model_payment_requisition_line,base.group_user,1,1,1,1
-ng_payment_request.access_payment_requisition,access_payment_requisition,ng_payment_request.model_payment_requisition,base.group_user,1,1,1,1
-access_payment_notification_rule_manager,payment.notification.rule.manager,model_payment_notification_rule,account.group_account_manager,1,1,1,1
-access_payment_notification_rule_user,payment.notification.rule.user,model_payment_notification_rule,base.group_user,1,0,0,0
