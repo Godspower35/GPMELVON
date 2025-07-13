@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Mail template for Sale Order MD Approval -->
+        <record id="mail_template_sale_md_approval" model="mail.template">
+            <field name="name">Sales: MD Approval Required</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="subject">MD Approval Required for Sale Order {{ object.name }}</field>
+            <field name="email_from">{{ (user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="body_html" type="html">
+                <div style="font-family:Verdana, Arial,sans-serif; color: #454748; max-width: 900px; width: 100%;">
+                    <!-- Preview text (hidden) -->
+                    <div style="display: none; max-height: 0px; overflow: hidden; color:#fff; font-size:0px; line-height:0px">
+                        Sale Order requires your approval [...]
+                    </div>
+                    <!-- Action Button Section -->
+                    <div summary="o_mail_notification" style="padding: 0px;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="width: 100%; margin-top: 5px;">
+                            <tbody>
+                                <tr>
+                                    <td valign="center">
+                                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 10px 0px;"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="center" style="white-space:nowrap;">
+                                        <table cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="border-radius: 3px; text-align: center; background: #875A7B;">
+                                                        <a t-att-href="'/mail/view?model=%s&amp;res_id=%s' % (object._name, object.id)" style="font-size: 12px; color: #FFFFFF; display: block; padding: 8px 12px 11px; text-decoration: none !important; font-weight: 400;">
+                                                            View Sale Order
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="center">
+                                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 10px 0px;"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Main Content -->
+                    <div style="font-size: 13px;">
+                        <div style="margin:0px; padding:0px">
+                            <p style="margin:0px; padding:0px; font-size:13px">
+                                Dear Managing Director,
+                                <br/>
+                                <br/>
+                                The Sale Order with reference
+                                <span style="font-weight:bold" t-out="object.name or ''"/>
+                                requires your attention for approval.
+                                <br/>
+                                <br/>
+                                <br/>
+
+                                Best regards,
+                                <br/>
+                                <br/>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Footer -->
+                    <div style="margin-top:32px;">
+                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 4px 0px;"/>
+                        <b style="font-size:11px;" t-out="object.company_id.name or ''"/>
+                        <br/>
+                        <p style="color: #999999; margin-top:2px; font-size:11px;">
+                            <t t-if="object.company_id.phone">
+                                <t t-out="object.company_id.phone"/>
+ |
+                            </t>
+                            <t t-if="object.company_id.email">
+                                <a t-attf-href="mailto:{{object.company_id.email}}" style="text-decoration:none; color: #999999;">
+                                    <t t-out="object.company_id.email"/>
+                                </a> |
+                            </t>
+                            <t t-if="object.company_id.website">
+                                <a t-attf-href="{{object.company_id.website}}" style="text-decoration:none; color: #999999;">
+                                    <t t-out="object.company_id.website"/>
+                                </a>
+                            </t>
+                        </p>
+                    </div>
+                    <div style="color: #555555; font-size:11px;">
+                        Powered by
+                        <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=email" style="color: #875A7B;">Odoo</a>
+                        <span id="mail_unfollow">
+                            |
+                            <a href="/mail/unfollow" style="text-decoration:none; color:#555555;">Unfollow</a>
+                        </span>
+                    </div>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+        </record>
+
+        <!-- Mail template for Purchase Order MD Approval -->
+        <record id="mail_template_purchase_md_approval" model="mail.template">
+            <field name="name">Purchase: MD Approval Required</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="subject">MD Approval Required for Purchase Order {{ object.name }}</field>
+            <field name="email_from">{{ (user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="body_html" type="html">
+                <div style="font-family:Verdana, Arial,sans-serif; color: #454748; max-width: 900px; width: 100%;">
+                    <!-- Preview text (hidden) -->
+                    <div style="display: none; max-height: 0px; overflow: hidden; color:#fff; font-size:0px; line-height:0px">
+                        Purchase Order requires your approval [...]
+                    </div>
+                    <!-- Action Button Section -->
+                    <div summary="o_mail_notification" style="padding: 0px;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="width: 100%; margin-top: 5px;">
+                            <tbody>
+                                <tr>
+                                    <td valign="center">
+                                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 10px 0px;"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="center" style="white-space:nowrap;">
+                                        <table cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="border-radius: 3px; text-align: center; background: #875A7B;">
+                                                        <a t-att-href="'/mail/view?model=%s&amp;res_id=%s' % (object._name, object.id)" style="font-size: 12px; color: #FFFFFF; display: block; padding: 8px 12px 11px; text-decoration: none !important; font-weight: 400;">
+                                                            View Purchase Order
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="center">
+                                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 10px 0px;"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Main Content -->
+                    <div style="font-size: 13px;">
+                        <div style="margin:0px; padding:0px">
+                            <p style="margin:0px; padding:0px; font-size:13px">
+                                Dear Managing Director,
+                                <br/>
+                                <br/>
+                                The Purchase Order with reference
+                                <span style="font-weight:bold" t-out="object.name or ''"/>
+                                requires your attention for approval.
+                                <br/>
+                                <br/>
+                                <br/>
+
+                                Best regards,
+                                <br/>
+                                <br/>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Footer -->
+                    <div style="margin-top:32px;">
+                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 4px 0px;"/>
+                        <b style="font-size:11px;" t-out="object.company_id.name or ''"/>
+                        <br/>
+                        <p style="color: #999999; margin-top:2px; font-size:11px;">
+                            <t t-if="object.company_id.phone">
+                                <t t-out="object.company_id.phone"/>
+ |
+                            </t>
+                            <t t-if="object.company_id.email">
+                                <a t-attf-href="mailto:{{object.company_id.email}}" style="text-decoration:none; color: #999999;">
+                                    <t t-out="object.company_id.email"/>
+                                </a> |
+                            </t>
+                            <t t-if="object.company_id.website">
+                                <a t-attf-href="{{object.company_id.website}}" style="text-decoration:none; color: #999999;">
+                                    <t t-out="object.company_id.website"/>
+                                </a>
+                            </t>
+                        </p>
+                    </div>
+                    <div style="color: #555555; font-size:11px;">
+                        Powered by
+                        <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=email" style="color: #875A7B;">Odoo</a>
+                        <span id="mail_unfollow">
+                            |
+                            <a href="/mail/unfollow" style="text-decoration:none; color:#555555;">Unfollow</a>
+                        </span>
+                    </div>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+        </record>
+
+        <!-- Mail template for Expense Sheet MD Approval -->
+        <record id="mail_template_expense_md_approval" model="mail.template">
+            <field name="name">Expense: MD Approval Required</field>
+            <field name="model_id" ref="hr_expense.model_hr_expense_sheet"/>
+            <field name="subject">MD Approval Required for Expense Sheet {{ object.name }}</field>
+            <field name="email_from">{{ (user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.employee_id.user_id.partner_id.id }}</field>
+            <field name="body_html" type="html">
+                <div style="font-family:Verdana, Arial,sans-serif; color: #454748; max-width: 900px; width: 100%;">
+                    <!-- Preview text (hidden) -->
+                    <div style="display: none; max-height: 0px; overflow: hidden; color:#fff; font-size:0px; line-height:0px">
+                        Expense Sheet requires your approval [...]
+                    </div>
+                    <!-- Action Button Section -->
+                    <div summary="o_mail_notification" style="padding: 0px;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="width: 100%; margin-top: 5px;">
+                            <tbody>
+                                <tr>
+                                    <td valign="center">
+                                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 10px 0px;"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="center" style="white-space:nowrap;">
+                                        <table cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="border-radius: 3px; text-align: center; background: #875A7B;">
+                                                        <a t-att-href="'/mail/view?model=%s&amp;res_id=%s' % (object._name, object.id)" style="font-size: 12px; color: #FFFFFF; display: block; padding: 8px 12px 11px; text-decoration: none !important; font-weight: 400;">
+                                                            View Expense Sheet
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="center">
+                                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 10px 0px;"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Main Content -->
+                    <div style="font-size: 13px;">
+                        <div style="margin:0px; padding:0px">
+                            <p style="margin:0px; padding:0px; font-size:13px">
+                                Dear Managing Director,
+                                <br/>
+                                <br/>
+                                The Expense Sheet with reference
+                                <span style="font-weight:bold" t-out="object.name or ''"/>
+                                requires your attention for approval.
+                                <br/>
+                                <br/>
+                                Best regards,
+                                <br/>
+                                <br/>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Footer -->
+                    <div style="margin-top:32px;">
+                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 4px 0px;"/>
+                        <b style="font-size:11px;" t-out="object.company_id.name or ''"/>
+                        <br/>
+                        <p style="color: #999999; margin-top:2px; font-size:11px;">
+                            <t t-if="object.company_id.phone">
+                                <t t-out="object.company_id.phone"/>
+ |
+                            </t>
+                            <t t-if="object.company_id.email">
+                                <a t-attf-href="mailto:{{object.company_id.email}}" style="text-decoration:none; color: #999999;">
+                                    <t t-out="object.company_id.email"/>
+                                </a> |
+                            </t>
+                            <t t-if="object.company_id.website">
+                                <a t-attf-href="{{object.company_id.website}}" style="text-decoration:none; color: #999999;">
+                                    <t t-out="object.company_id.website"/>
+                                </a>
+                            </t>
+                        </p>
+                    </div>
+                    <div style="color: #555555; font-size:11px;">
+                        Powered by
+                        <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=email" style="color: #875A7B;">Odoo</a>
+                        <span id="mail_unfollow">
+                            |
+                            <a href="/mail/unfollow" style="text-decoration:none; color:#555555;">Unfollow</a>
+                        </span>
+                    </div>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+</odoo>

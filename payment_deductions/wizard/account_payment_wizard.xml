@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Create wizard form -->
+    <record id="view_payment_accounts_wizard_form" model="ir.ui.view">
+        <field name="name">payment.accounts.wizard.form</field>
+        <field name="model">payment.accounts.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Payment Accounts Configuration">
+                <sheet>
+                    <group>
+                        <field name="company_id" invisible="1"/>
+                        <field name="account_type" widget="radio"/>
+                    </group>
+
+                    <group string="Inbound Payment Accounts" invisible="account_type != 'inbound'">
+                        <field name="wht_receivables_inbound_id"/>
+                        <field name="vat_receivables_inbound_id"/>
+                        <field name="wht_payables_inbound_id"/>
+                        <field name="ncd_inbound_id"/>
+                        <field name="exchange_gain_loss_inbound_id"/>
+                        <field name="ncd_payables_inbound_id"/>
+                        <field name="vat_payables_inbound_id"/>
+                    </group>
+
+                    <group string="Outbound Payment Accounts" invisible="account_type != 'outbound'">
+                        <field name="wht_receivables_outbound_id"/>
+                        <field name="vat_receivables_outbound_id"/>
+                        <field name="wht_payables_outbound_id"/>
+                        <field name="ncd_outbound_id"/>
+                        <field name="exchange_gain_loss_outbound_id"/>
+                        <field name="ncd_payables_outbound_id"/>
+                        <field name="vat_payables_outbound_id"/>
+                    </group>
+
+                    <footer>
+                        <button name="save_accounts" string="Save" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Create wizard action -->
+    <record id="action_payment_accounts_wizard" model="ir.actions.act_window">
+        <field name="name">Configure Payment Accounts</field>
+        <field name="res_model">payment.accounts.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_asset_form_inherit" model="ir.ui.view">
+            <field name="name">account.asset.form.inherit</field>
+            <field name="model">account.asset</field>
+            <field name="inherit_id" ref="account_asset.view_account_asset_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='original_value']" position="after">
+                    <field name="initial_accumulated_depreciation"
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"
+                           string="Initial Accumulated Depreciation Value"/>
+                    <field name="accumulated_depreciation_value"
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"
+                           string="Accumulated Depreciation Value"/>
+                    <field name="current_depreciation_value"
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"
+                           string="Current Depreciation Value"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_account_asset_list_inherit" model="ir.ui.view">
+            <field name="name">account.asset.list.inherit</field>
+            <field name="model">account.asset</field>
+            <field name="inherit_id" ref="account_asset.view_account_asset_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='method']" position="before">
+                    <field name="accumulated_depreciation_value" widget="monetary" optional="show"/>
+                    <field name="current_depreciation_value" widget="monetary" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

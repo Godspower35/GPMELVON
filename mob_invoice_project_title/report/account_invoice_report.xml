@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_invoice_document_inherit_project_title" inherit_id="account.report_invoice_document">
+        <xpath expr="//t[@t-set='layout_document_title']" position="after">
+            <t t-if="o.project_title">
+                <div class="row" style="margin-top: 1.5em; margin-bottom: 1.5em;">
+                    <div class="col-12 text-center">
+                        <div class="page-header" style="font-size: 1.5em; font-weight: bold;">
+                            <span t-field="o.project_title"/>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="report_invoice_document_inherit_item_no" inherit_id="account.report_invoice_document">
+        <!-- Add Item No header -->
+        <xpath expr="//th[@name='th_description']" position="before">
+            <th class="text-center">Item No</th>
+        </xpath>
+        
+        <!-- Add counter -->
+        <xpath expr="//t[@t-foreach='lines']" position="before">
+            <t t-set="item_no" t-value="0"/>
+        </xpath>
+        
+        <!-- Add Item No cell -->
+        <xpath expr="//td[@name='account_invoice_line_name']" position="before">
+            <t t-set="item_no" t-value="item_no + 1"/>
+            <td class="text-center">
+                <span t-esc="item_no"/>
+            </td>
+        </xpath>
+        
+        <!-- Add empty cells for sections and notes -->
+        <xpath expr="//t[contains(@t-elif, 'line_section')]/td" position="before">
+            <td></td>
+        </xpath>
+        
+        <xpath expr="//t[contains(@t-elif, 'line_note')]/td" position="before">
+            <td></td>
+        </xpath>
+    </template>
+</odoo>

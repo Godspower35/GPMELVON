@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_move_form_inherit_project_title" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.project.title</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="project_title"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

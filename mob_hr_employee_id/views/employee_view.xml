@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_employee_form_inherit_employee_id" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.employee.id</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <field name="coach_id" position="after">
+                <field name="employee_identification_id" readonly="1"/>
+                <button name="action_generate_employee_id" type="object" string="Generate Employee ID" invisible="employee_identification_id"/>
+            </field>
+        </field>
+    </record>
+</odoo> 

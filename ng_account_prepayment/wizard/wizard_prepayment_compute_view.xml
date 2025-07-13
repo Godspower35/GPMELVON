@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_perpayment_depreciation_confirmation_wizard" model="ir.ui.view">
+            <field name="name">perpayment.depreciation.confirmation.wizard</field>
+            <field name="model">perpayment.depreciation.confirmation.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <div class="alert alert-info" role="alert">
+                            <p>This wizard will post the depreciation lines of running perpayments that belong to the selected period.</p>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="date_start"/>
+                            </group>
+                            <group>
+                                <field name="date_end"/>
+                            </group>
+                        </group>
+                    </group>
+                    <footer>
+                        <button class="btn-primary" string="Compute" name="perpayment_compute" type="object"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_perpayment_depreciation_confirmation_wizard" model="ir.actions.act_window">
+            <field name="name">Compute Prepayments</field>
+            <field name="res_model">perpayment.depreciation.confirmation.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_perpayment_depreciation_confirmation_wizard"/>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem action="action_perpayment_depreciation_confirmation_wizard"
+            id="menu_perpayment_depreciation_confirmation_wizard" 
+            parent="account.menu_finance_entries"/>
+    </data>
+</odoo>

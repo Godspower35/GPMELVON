@@ -1,0 +1,20 @@
+{
+    'name': 'Employee Identification ID',
+    'version': '1.2',
+    'summary': 'Auto-generate and manage employee identification IDs with configurable prefix',
+    'description': 'Adds an auto-generated employee identification ID to employees, configurable prefix, and integration with payslips.',
+    'author': 'MOB - Ifeanyi Nneji',
+    'website': 'https://www.mattobellonline.com/',
+    'category': 'Human Resources',
+    'depends': ['hr', 'hr_payroll'],
+    'data': [
+        'views/employee_view.xml',
+        'views/res_config_settings_view.xml',
+        'report/report_payslip_templates.xml',
+    ],
+    'images': ['static/description/icon.png'],
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+    'license': 'LGPL-3',
+}

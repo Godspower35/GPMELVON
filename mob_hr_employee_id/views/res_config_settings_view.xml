@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit_employee_id" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.employee.id</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='employees_setting_container']" position="inside">
+                <setting id="employee_id_setting" title="Employee ID Generation" help="Configure automatic employee ID generation settings">
+                    <div class="content-group">
+                        <div class="row mt16">
+                            <label for="employee_id_prefix" class="col-lg-3 o_light_label" string="Prefix"/>
+                            <field name="employee_id_prefix" class="oe_inline" placeholder="e.g., M983"/>
+                        </div>
+                        <div class="row mt16">
+                            <label for="employee_id_suffix" class="col-lg-3 o_light_label" string="Suffix"/>
+                            <field name="employee_id_suffix" class="oe_inline" placeholder="e.g., L"/>
+                        </div>
+                        <div class="row mt16">
+                            <label for="employee_id_number_padding" class="col-lg-3 o_light_label" string="Number Padding"/>
+                            <field name="employee_id_number_padding" class="oe_inline" widget="number"/>
+                            <div class="col-lg-6">
+                                <small class="text-muted">Number of digits for the numeric part (e.g., 2 for 01, 3 for 001)</small>
+                            </div>
+                        </div>
+                        <div class="mt16">
+                            <div class="alert alert-info" role="alert">
+                                <p class="mb-0">
+                                    <strong>Example formats:</strong><br/>
+                                    - With prefix only: EMP01, EMP02<br/>
+                                    - With suffix only: 01L, 02L<br/>
+                                    - With both: M98301L, M98302L<br/>
+                                    - Without prefix/suffix: 01, 02
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mt8">
+                            <button type="object" name="action_update_employee_ids" string="Update All Employee IDs" class="btn-link" icon="fa-refresh"/>
+                        </div>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo> 

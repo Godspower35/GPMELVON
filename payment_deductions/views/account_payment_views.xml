@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="nile_view_account_payment_form_inherit" model="ir.ui.view">
+        <field name="name">nile.scan.account.payment.view.form.inherit</field>
+        <field name="model">account.payment</field>
+        <field name="priority">10000</field>
+        <field name="inherit_id" ref="account.view_account_payment_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_bank_id']" position="after">
+                <!-- Inbound Payment Deduction Fields -->
+                <field name="wht_receivables_inbound_amount" string="WHT Receivables" invisible="payment_type != 'inbound'"/>
+                <field name="vat_receivables_inbound_amount" string="VAT Receivables" invisible="payment_type != 'inbound'"/>
+                <field name="wht_payables_inbound_amount" string="WHT Payables" invisible="payment_type != 'inbound'"/>
+                <field name="ncd_inbound_amount" string="NCD" invisible="payment_type != 'inbound'"/>
+                <field name="exchange_gain_loss_inbound_amount" string="Exchange Gain/Loss" invisible="payment_type != 'inbound'"/>
+                <field name="ncd_payables_inbound_amount" string="NCD Payables" invisible="payment_type != 'inbound'"/>
+                <field name="vat_payables_inbound_amount" string="VAT Payables" invisible="payment_type != 'inbound'"/>
+
+                <!-- Outbound Payment Deduction Fields -->
+                <field name="wht_receivables_outbound_amount" string="WHT Receivables" invisible="payment_type != 'outbound'"/>
+                <field name="vat_receivables_outbound_amount" string="VAT Receivables" invisible="payment_type != 'outbound'"/>
+                <field name="wht_payables_outbound_amount" string="WHT Payables" invisible="payment_type != 'outbound'"/>
+                <field name="ncd_outbound_amount" string="NCD" invisible="payment_type != 'outbound'"/>
+                <field name="exchange_gain_loss_outbound_amount" string="Exchange Gain/Loss" invisible="payment_type != 'outbound'"/>
+                <field name="ncd_payables_outbound_amount" string="NCD Payables" invisible="payment_type != 'outbound'"/>
+                <field name="vat_payables_outbound_amount" string="VAT Payables" invisible="payment_type != 'outbound'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add button to payment form -->
+    <record id="view_account_payment_form_inherit" model="ir.ui.view">
+        <field name="name">account.payment.form.inherit</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(action_payment_accounts_wizard)d"
+                        string="Configure Accounts"
+                        type="action"
+                        class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add menu item under Configuration -->
+    <menuitem id="menu_payment_accounts_config" 
+              name="Payment Accounts"
+              parent="account.menu_finance_configuration"
+              action="action_payment_accounts_wizard"
+              sequence="50"/>
+</odoo>

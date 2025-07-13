@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_account_view_form" model="ir.ui.view">
+        <field name="name">account.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40" />
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='quick_edit_mode']" position="after">
+                <block title="Payment Deduction Accounts" id="payment_deduction_accounts">
+                    <setting string="Account Type Selection">
+                        <div class="o_setting_left_panel" />
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Select the type of accounts to configure.</span>
+                            <div class="content-group">
+                                <div class="row mt8">
+                                    <label for="account_type" class="col-lg-5 o_light_label" />
+                                    <field name="account_type" widget="radio" options="{'horizontal': true}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </setting>
+
+                    <setting string="Inbound Payment Accounts" invisible="account_type != 'inbound'">
+                        <div class="o_setting_left_panel" />
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Configure accounts for inbound payment deductions.</span>
+                            <div class="content-group">
+                                <div class="row mt8">
+                                    <label for="wht_receivables_inbound" class="col-lg-5 o_light_label" />
+                                    <field name="wht_receivables_inbound" domain="[('company_ids', 'in', current_company_id)]" />
+                                </div>
+                                <div class="row mt8">
+                                    <label for="vat_receivables_inbound" class="col-lg-5 o_light_label" />
+                                    <field name="vat_receivables_inbound" domain="[('company_ids', 'in', current_company_id)]" />
+                                </div>
+                                <div class="row mt8">
+                                    <label for="wht_payables_inbound" class="col-lg-5 o_light_label" />
+                                    <field name="wht_payables_inbound" domain="[('company_ids', 'in', current_company_id)]" />
+                                </div>
+                                <div class="row mt8">
+                                    <label for="ncd_inbound" class="col-lg-5 o_light_label" />
+                                    <field name="ncd_inbound" domain="[('company_ids', 'in', current_company_id)]" />
+                                </div>
+                                <div class="row mt8">
+                                    <label for="exchange_gain_loss_inbound" class="col-lg-5 o_light_label" />
+                                    <field name="exchange_gain_loss_inbound" domain="[('company_ids', 'in', current_company_id)]" />
+                                </div>
+                                <div class="row mt8">
+                                    <label for="ncd_payables_inbound" class="col-lg-5 o_light_label" />
+                                    <field name="ncd_payables_inbound" domain="[('company_ids', 'in', current_company_id)]" />
+                                </div>
+                                <div class="row mt8">
+                                    <label for="vat_payables_inbound" class="col-lg-5 o_light_label" />
+                                    <field name="vat_payables_inbound" domain="[('company_ids', 'in', current_company_id)]" />
+                                </div>
+                            </div>
+                        </div>
+                    </setting>
+
+                    <setting string="Outbound Payment Accounts" invisible="account_type != 'outbound'">
+                        <div class="o_setting_left_panel" />
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Configure accounts for outbound payment deductions.</span>
+                            <div class="content-group">
+                                <div class="row mt8">
+                                    <label for="wht_receivables_outbound" class="col-lg-5 o_light_label" />
+                                    <field name="wht_receivables_outbound" domain="[('company_ids', 'in', current_company_id)]" />
+                                </div>
+                                <div class="row mt8">
+                                    <label for="vat_receivables_outbound" class="col-lg-5 o_light_label" />
+                                    <field name="vat_receivables_outbound" domain="[('company_ids', 'in', current_company_id)]" />
+                                </div>
+                                <div class="row mt8">
+                                    <label for="wht_payables_outbound" class="col-lg-5 o_light_label" />
+                                    <field name="wht_payables_outbound" domain="[('company_ids', 'in', current_company_id)]" />
+                                </div>
+                                <div class="row mt8">
+                                    <label for="ncd_outbound" class="col-lg-5 o_light_label" />
+                                    <field name="ncd_outbound" domain="[('company_ids', 'in', current_company_id)]" />
+                                </div>
+                                <div class="row mt8">
+                                    <label for="exchange_gain_loss_outbound" class="col-lg-5 o_light_label" />
+                                    <field name="exchange_gain_loss_outbound" domain="[('company_ids', 'in', current_company_id)]" />
+                                </div>
+                                <div class="row mt8">
+                                    <label for="ncd_payables_outbound" class="col-lg-5 o_light_label" />
+                                    <field name="ncd_payables_outbound" domain="[('company_ids', 'in', current_company_id)]" />
+                                </div>
+                                <div class="row mt8">
+                                    <label for="vat_payables_outbound" class="col-lg-5 o_light_label" />
+                                    <field name="vat_payables_outbound" domain="[('company_ids', 'in', current_company_id)]" />
+                                </div>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
